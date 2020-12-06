@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostLikeController;
 
 Route::get('/',function(){
     return view('home');
@@ -25,4 +26,7 @@ Route::post('/register', [RegisterController::class,'store']);
 
 Route::get('/post',[PostController::class,'index'])->name('posts');
 Route::post('/post',[PostController::class,'store']);
+
+Route::post('/posts/{post}/likes',[PostLikeController::class,'store'])->name('posts.likes');
+Route::delete('/posts/{post}/likes',[PostLikeController::class,'destroy'])->name('posts.likes');
 

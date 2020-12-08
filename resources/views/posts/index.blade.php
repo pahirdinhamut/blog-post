@@ -40,7 +40,7 @@
                             <button type="submit" class="text-blue-300">Unlike</button>
                         </form>
                         @endif
-                        @if($post->ownedBy(auth()->user()))
+                        @can('delete',$post)
                         <form action="{{ route('posts.destroy',$post) }}"  method="post">
                             @csrf
                             @method('DELETE')
@@ -50,7 +50,7 @@
                               </svg>
                             </button>
                         </form>
-                        @endif
+                        @endcan
                         @endauth
                         <span>  {{ $post->likes->count() }} {{ Str::plural('like', $post->likes->count() ) }} </span>
                     </div>
